@@ -4,8 +4,8 @@ $Region = "Central US"
 $ClusterName="TestCluster4"
 $SparkVersion="4.0.x-scala2.11"
 $NodeType="Standard_D3_v2"
-$MinNumberOfWorkers=1
-$MaxNumberOfWorkers=1
+$MinNumberOfWorkers=0
+$MaxNumberOfWorkers=0
 $Spark_conf = '{"spark.speculation": true, "spark.streaming.ui.retainedBatches": 5}'
 $CustomTags = '{"key": "CreatedBy", "value": "simon"}' , '{"key":"Date","value":"1st Jan 2000"}'
 # $InitScripts = '{"key": "Script1", "value": "dbfs:/script/script1"}', '{"key":"Script2","value":"dbfs:/script/script2"}'
@@ -19,12 +19,5 @@ Describe "New-DatabricksCluster" {
             -MinNumberOfWorkers $MinNumberOfWorkers -MaxNumberOfWorkers $MaxNumberOfWorkers `
             -Spark_conf $Spark_conf -CustomTags $CustomTags -AutoTerminationMinutes $AutoTerminationMinutes `
             -Verbose -SparkEnvVars $SparkEnvVars -PythonVersion $PythonVersion   # -UniqueNames -Update
-
-        $ClusterId.cluster_id.Length | Should -BeGreaterThan 1
-    }
-
-    AfterAll {
-        Start-Sleep -Seconds 10
-        Remove-DatabricksCluster -BearerToken $BearerToken -Region $Region -ClusterName $ClusterName
     }
 }
