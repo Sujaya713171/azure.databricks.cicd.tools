@@ -17,7 +17,7 @@ Describe "New-DatabricksCluster" {
     It "Create basic cluster"{
         $ClusterId = New-DatabricksCluster  -BearerToken $BearerToken -Region $Region -ClusterName $ClusterName -SparkVersion $SparkVersion -NodeType $NodeType `
             -MinNumberOfWorkers $MinNumberOfWorkers -MaxNumberOfWorkers $MaxNumberOfWorkers `
-            -Spark_conf $Spark_conf -CustomTags $CustomTags -AutoTerminationMinutes $AutoTerminationMinutes `
-            -Verbose -SparkEnvVars $SparkEnvVars -PythonVersion $PythonVersion   # -UniqueNames -Update
+            -CustomTags $CustomTags -AutoTerminationMinutes $AutoTerminationMinutes `
+            -Verbose -PythonVersion $PythonVersion   # -UniqueNames -Update
     }
 }
